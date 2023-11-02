@@ -5,6 +5,7 @@
 [sub_resource type="GDScript" id="GDScript_rncop"]
 script/source = "extends Area2D
 
+@onready var cameraNode : Camera2D = get_node(\"../Camera2D\") # holt sich Camera2DNode aus Nodepfad (relativ zu diesem Node)
 @export var speed = 200 # How fast the player will move (pixels/sec).
 @export var rotation_speed = 20.0
 var rotation_direction = 0.0
@@ -24,13 +25,15 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	get_input()
+	cameraNode.position.x = 0# Screen von: - screen_size.x / 2.0 bis + screen_size.x / 2.0 (gleich in y)
+	cameraNode.position.y = position.y
 	testrotation_angle = rotation_direction * rotation_speed# * delta
 	rotate(testrotation_angle/360)
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
-		print(position)
+		#print(position)
 	position += velocity * delta
-	position = position.clamp(Vector2.ZERO, screen_size)
+	position = position.clamp((screen_size / -2.0), (screen_size / 2.0))
 "
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_tgmn7"]
