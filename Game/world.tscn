@@ -7,14 +7,19 @@
 texture = ExtResource("1_smhvf")
 0:1/size_in_atlas = Vector2i(30, 20)
 0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-162.635, 8.48526, -61.31, -22.274, -4.24265, -39.598, 165.463, 5.65683, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_2g0u5"]
+physics_layer_0/collision_layer = 6
 sources/0 = SubResource("TileSetAtlasSource_o5wft")
 
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_djhg5")]
 position = Vector2(0, 0)
+collision_mask = 6
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -22,4 +27,4 @@ position = Vector2(0, 0)
 z_index = -1
 tile_set = SubResource("TileSet_2g0u5")
 format = 2
-layer_0/tile_data = PackedInt32Array(851967, 0, 1, -458753, 0, 1, -1769473, 0, 1, -3080193, 0, 1, -4390913, 0, 1)
+layer_0/tile_data = PackedInt32Array(-720896, 0, 1, -2031616, 0, 1)
