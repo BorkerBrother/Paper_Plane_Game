@@ -1,15 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://lblemmtoksoq"]
+[gd_scene load_steps=5 format=3 uid="uid://lblemmtoksoq"]
 
 [ext_resource type="PackedScene" uid="uid://cd235rqcdfy8m" path="res://player.tscn" id="1_djhg5"]
 [ext_resource type="Texture2D" uid="uid://cnqjxh0j0pxix" path="res://Assets/Background_Paper_Plane.png" id="1_smhvf"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o5wft"]
+texture = ExtResource("1_smhvf")
+0:1/size_in_atlas = Vector2i(30, 20)
+0:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_2g0u5"]
+sources/0 = SubResource("TileSetAtlasSource_o5wft")
 
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_djhg5")]
 position = Vector2(0, 0)
 
-[node name="BackgroundPaperPlane" type="Sprite2D" parent="."]
-z_index = -1
-texture = ExtResource("1_smhvf")
-
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="."]
+z_index = -1
+tile_set = SubResource("TileSet_2g0u5")
+format = 2
+layer_0/tile_data = PackedInt32Array(851967, 0, 1, -458753, 0, 1, -1769473, 0, 1, -3080193, 0, 1, -4390913, 0, 1)
