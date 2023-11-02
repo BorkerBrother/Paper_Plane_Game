@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://lblemmtoksoq"]
+
+[ext_resource type="PackedScene" uid="uid://cd235rqcdfy8m" path="res://player.tscn" id="1_djhg5"]
+[ext_resource type="Texture2D" uid="uid://cnqjxh0j0pxix" path="res://Assets/Background_Paper_Plane.png" id="1_smhvf"]
+
+[node name="World" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_djhg5")]
+
+[node name="BackgroundPaperPlane" type="Sprite2D" parent="."]
+position = Vector2(241, 361)
+texture = ExtResource("1_smhvf")
