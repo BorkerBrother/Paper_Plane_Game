@@ -15,21 +15,36 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	var velocity = Vector2.ZERO # The player's movement vector.
+	if Input.is_action_pressed(\"move_right\"):
+		velocity.x += 1
+	if Input.is_action_pressed(\"move_left\"):
+		velocity.x -= 1
+	if Input.is_action_pressed(\"move_down\"):
+		velocity.y += 1
+	if Input.is_action_pressed(\"move_up\"):
+		velocity.y -= 1
+
+	if velocity.length() > 0:
+		velocity = velocity.normalized() * speed
+	
+	position += velocity * delta
+	position = position.clamp(Vector2.ZERO, screen_size)
 "
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_tgmn7"]
 points = PackedVector2Array(-30, 0, 0, 30, 20.5, -20)
 
 [node name="Area2D" type="Area2D"]
+position = Vector2(248, 279)
 script = SubResource("GDScript_rncop")
+metadata/_edit_group_ = true
 
 [node name="Clipart2816848" type="Sprite2D" parent="."]
-position = Vector2(25, 25)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("1_mgj75")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(29, 20.5)
+position = Vector2(4, -4)
 shape = SubResource("ConvexPolygonShape2D_tgmn7")
 one_way_collision_margin = 0.0

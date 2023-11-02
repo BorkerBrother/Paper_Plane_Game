@@ -6,7 +6,9 @@
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_djhg5")]
+position = Vector2(91, 67)
 
 [node name="BackgroundPaperPlane" type="Sprite2D" parent="."]
+z_index = -1
 position = Vector2(241, 361)
 texture = ExtResource("1_smhvf")
