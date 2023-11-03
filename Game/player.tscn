@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cd235rqcdfy8m"]
+[gd_scene load_steps=6 format=3 uid="uid://cd235rqcdfy8m"]
 
 [ext_resource type="Texture2D" uid="uid://dpmidbhou24nl" path="res://Assets/clipart2816848.png" id="1_mgj75"]
+[ext_resource type="Script" path="res://Trail2D.gd" id="2_m65s4"]
 
 [sub_resource type="GDScript" id="GDScript_rncop"]
 script/source = "extends Area2D
@@ -39,6 +40,10 @@ func _process(delta):
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_tgmn7"]
 points = PackedVector2Array(-30, 0, 0, 30, 20.5, -20)
 
+[sub_resource type="Curve" id="Curve_7lsfr"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0.505263), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="Area2D" type="Area2D"]
 position = Vector2(248, 279)
 rotation = -0.785398
@@ -53,3 +58,8 @@ texture = ExtResource("1_mgj75")
 position = Vector2(4, -4)
 shape = SubResource("ConvexPolygonShape2D_tgmn7")
 one_way_collision_margin = 0.0
+
+[node name="Trail2D" type="Line2D" parent="."]
+show_behind_parent = true
+width_curve = SubResource("Curve_7lsfr")
+script = ExtResource("2_m65s4")
