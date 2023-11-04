@@ -12,12 +12,13 @@ script/source = "extends Area2D
 var rotation_direction = 0.0
 var screen_size # Size of the game window.
 var velocity = Vector2.ZERO
+var c_velocity_y = 200 # konstante Bewegung in Y
 var testrotation_angle = 0.0 # rotationswinkel pro frame
 
 func get_input():
 	rotation_direction = Input.get_axis(\"move_left\", \"move_right\")
 	velocity = transform.x.rotated(-PI*1.0/4.0) * Input.get_axis(\"move_down\", \"move_up\") * speed
-	# transform.x zeigt nach \"vorne\" aus Sicht des Players, das stimmt erst nach rotated() mit Asset ueberein
+	# transform.x zeigt nach \"vorne\" aus Sicht des Players, das stimmt erst nach rotated() mit Asset ueberein 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -34,6 +35,7 @@ func _process(delta):
 		velocity = velocity.normalized() * speed
 		#print(position)
 	position += velocity * delta
+	position.y -= c_velocity_y * delta
 	position.x = clamp(position.x, screen_size.x / -2.0, screen_size.x / 2.0)
 "
 
@@ -41,25 +43,27 @@ func _process(delta):
 points = PackedVector2Array(-30, 0, 0, 30, 20.5, -20)
 
 [sub_resource type="Curve" id="Curve_7lsfr"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0.505263), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.521277, 0.242105), 0.0, 0.0, 0, 0, Vector2(1, 0.568421), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[node name="Area2D" type="Area2D"]
+[node name="Player" type="Area2D"]
 position = Vector2(248, 279)
 rotation = -0.785398
 script = SubResource("GDScript_rncop")
 metadata/_edit_group_ = true
 
 [node name="Clipart2816848" type="Sprite2D" parent="."]
-scale = Vector2(0.05, 0.05)
+scale = Vector2(0.03, 0.03)
 texture = ExtResource("1_mgj75")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4, -4)
+scale = Vector2(0.6, 0.6)
 shape = SubResource("ConvexPolygonShape2D_tgmn7")
 one_way_collision_margin = 0.0
 
 [node name="Trail2D" type="Line2D" parent="."]
 show_behind_parent = true
 width_curve = SubResource("Curve_7lsfr")
+default_color = Color(0.541176, 0.541176, 0.541176, 1)
 script = ExtResource("2_m65s4")

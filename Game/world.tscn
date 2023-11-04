@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://lblemmtoksoq"]
+[gd_scene load_steps=8 format=3 uid="uid://lblemmtoksoq"]
 
 [ext_resource type="PackedScene" uid="uid://cd235rqcdfy8m" path="res://player.tscn" id="1_djhg5"]
 [ext_resource type="Texture2D" uid="uid://cnqjxh0j0pxix" path="res://Assets/Background_Paper_Plane.png" id="1_smhvf"]
+[ext_resource type="Texture2D" uid="uid://cyxv1kj75twrf" path="res://Assets/Background_wave_both_sides_Zeichenfläche 1.png" id="3_tgcvd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o5wft"]
 texture = ExtResource("1_smhvf")
@@ -10,10 +11,36 @@ texture = ExtResource("1_smhvf")
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-162.635, 8.48526, -61.31, -22.274, -4.24265, -39.598, 165.463, 5.65683, -8, 8)
+29:21/0 = 0
+29:21/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+29:21/0/physics_layer_0/angular_velocity = 0.0
+29:22/0 = 0
+29:22/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+29:22/0/physics_layer_0/angular_velocity = 0.0
+29:23/0 = 0
+29:23/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+29:23/0/physics_layer_0/angular_velocity = 0.0
+29:24/0 = 0
+29:24/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+29:24/0/physics_layer_0/angular_velocity = 0.0
+29:25/0 = 0
+29:25/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+29:25/0/physics_layer_0/angular_velocity = 0.0
+29:26/0 = 0
+29:26/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+29:26/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_2g0u5"]
 physics_layer_0/collision_layer = 6
 sources/0 = SubResource("TileSetAtlasSource_o5wft")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ix3ec"]
+texture = ExtResource("3_tgcvd")
+0:0/size_in_atlas = Vector2i(37, 61)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_2f6g8"]
+sources/0 = SubResource("TileSetAtlasSource_ix3ec")
 
 [node name="World" type="Node2D"]
 
@@ -25,6 +52,14 @@ collision_mask = 6
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -1
+scale = Vector2(1, 3)
 tile_set = SubResource("TileSet_2g0u5")
 format = 2
-layer_0/tile_data = PackedInt32Array(-720896, 0, 1, -2031616, 0, 1)
+layer_0/tile_data = PackedInt32Array(-720896, 0, 1, -2031616, 0, 1, -3342336, 0, 1, -4653056, 0, 1, -5963776, 0, 1)
+
+[node name="TileMap2" type="TileMap" parent="."]
+z_index = -1
+scale = Vector2(1, 3)
+tile_set = SubResource("TileSet_2f6g8")
+format = 2
+layer_0/tile_data = PackedInt32Array(-8585216, 0, 0)
