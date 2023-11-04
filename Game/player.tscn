@@ -6,6 +6,7 @@
 [sub_resource type="GDScript" id="GDScript_rncop"]
 script/source = "extends Area2D
 
+signal hit # new signal emitted when player collides with other collisionshapes
 @onready var cameraNode : Camera2D = get_node(\"../Camera2D\") # holt sich Camera2DNode aus Nodepfad (relativ zu diesem Node)
 @export var speed = 200 # How fast the player will move (pixels/sec).
 @export var rotation_speed = 20.0
@@ -37,6 +38,19 @@ func _process(delta):
 	position += velocity * delta
 	position.y -= c_velocity_y * delta
 	position.x = clamp(position.x, screen_size.x / -2.0, screen_size.x / 2.0)
+
+
+func _on_body_entered(body):
+	#hide() # Player disappears after being hit.
+	print(\"Hit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\")
+	hit.emit()
+	# Must be deferred as we can't change physics properties on a physics callback.
+	$CollisionShape2D.set_deferred(\"disabled\", true)
+	
+func start(pos):
+	position = pos
+	show()
+	$CollisionShape2D.disabled = false
 "
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_tgmn7"]
@@ -67,3 +81,5 @@ show_behind_parent = true
 width_curve = SubResource("Curve_7lsfr")
 default_color = Color(0.541176, 0.541176, 0.541176, 1)
 script = ExtResource("2_m65s4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

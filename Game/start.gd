@@ -27,7 +27,7 @@ func _on_button_pressed():
 	var lineedit = get_node("LineEdit")
 	user = User_Player_test.new()
 	user.user_name = lineedit
-	for i in 10:
-		print(user.user_name.text)
+	#for i in 10:
+	#	print(user.user_name.text)
 	get_tree().change_scene_to_file("res://world.tscn")
 
