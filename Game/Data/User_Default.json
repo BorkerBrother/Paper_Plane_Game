@@ -1,0 +1,9 @@
+{
+  "class_name": "User_Default",
+  "base": "Node",
+  "user_name": "",
+  "score": 0,
+  "high_score": {
+	"value": 0
+  }
+}
