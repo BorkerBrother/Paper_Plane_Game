@@ -4,7 +4,7 @@ class_name User_Player_test
 var user_name = ""
 var score = 0
 var high_score = {
-		"value": 0
+		"value": 100
 	}
 
 var user
@@ -12,9 +12,8 @@ var user
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	user = User_Player_test.new()
-
-	#var txtLabel = get_node("LineEdit").get_text()
-	#get_node("LabelInfo").set_text(txtLabel)
+	update_high_score_label()
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,11 +27,7 @@ func _on_button_pressed():
 	user.user_name = lineedit
 	print(user.user_name)
 	save_user_data()
-	#	print(user.user_name.text)
 	get_tree().change_scene_to_file("res://world.tscn")
-
-
-
 
 # Laden der Standardwerte aus der JSON-Datei
 func load_default_stats():
@@ -64,7 +59,30 @@ func save_user_data():
 		}
 	}
 
-	var file = FileAccess.open("res://Data/user_data.json",FileAccess.WRITE)
-	if file.open("res://Data/user_data.json", FileAccess.WRITE):
+	var file = FileAccess.open("res://Data/user_data.json",FileAccess.WRITE_READ)
+	if file.open("res://Data/user_data.json", FileAccess.WRITE_READ):
 		file.store_string(JSON.stringify(user_data))
 		file.close()
+
+# Aktualisieren des Labels mit dem High Score
+func update_high_score_label():
+	var label = $LabelHighScore
+	
+	var file = FileAccess.open("res://Data/user_data.json",FileAccess.READ)
+	if file.open("res://Data/user_data.json", FileAccess.READ):
+		
+		var json_text = file.get_as_text()
+		file.close()
+		
+		var json_data = JSON.parse_string(json_text)
+		print(json_data)
+		if json_data and json_data.has("high_score") and json_data["high_score"].has("value"):
+			var highscore = json_data["high_score"]["value"]
+			print(highscore)
+			label.text = "High Score: " + str(highscore)
+		
+		
+	
+	
+	
+	#label.text = "Score: " + str(high_score)  # Aktualisiere den Text des Labels

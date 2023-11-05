@@ -23,13 +23,9 @@ placeholder_text = "Enter Name"
 max_length = 8
 clear_button_enabled = true
 
-[node name="TextEdit" type="TextEdit" parent="."]
-visible = false
-offset_left = 161.0
-offset_top = 131.0
-offset_right = 343.0
-offset_bottom = 218.0
+[node name="LabelHighScore" type="Label" parent="."]
+offset_right = 159.0
+offset_bottom = 80.0
 theme_override_font_sizes/font_size = 50
-text = "Name:"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
