@@ -8,12 +8,13 @@ script/source = "extends Area2D
 
 signal hit # new signal emitted when player collides with other collisionshapes
 @onready var cameraNode : Camera2D = get_node(\"../Camera2D\") # holt sich Camera2DNode aus Nodepfad (relativ zu diesem Node)
-@export var speed = 200 # How fast the player will move (pixels/sec).
+@onready var pointLight2D : PointLight2D = get_node(\"../PointLight2D\")
+@export var speed = 50 # How fast the player will move (pixels/sec).
 @export var rotation_speed = 20.0
 var rotation_direction = 0.0
 var screen_size # Size of the game window.
 var velocity = Vector2.ZERO
-var c_velocity_y = 200 # konstante Bewegung in Y
+var c_velocity_y = 0 # konstante Bewegung in Y
 var testrotation_angle = 0.0 # rotationswinkel pro frame
 
 func get_input():
@@ -28,6 +29,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	get_input()
+	#pointLight2D.position = position
+	#pointLight2D.position.y -= 70.
 	cameraNode.position.x = 0# Screen von: - screen_size.x / 2.0 bis + screen_size.x / 2.0 (gleich in y)
 	cameraNode.position.y = position.y
 	testrotation_angle = rotation_direction * rotation_speed# * delta
